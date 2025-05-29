@@ -57,6 +57,26 @@ CREATE TABLE detalles_pedido (
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 
+-- Tabla para el trigger tr_RegistroHistorico
+CREATE TABLE historial_precios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT,
+    precio_anterior DECIMAL(4,2),
+    precio_nuevo DECIMAL(4,2),
+    fecha_cambio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+
+-- Tabla para el trigger tr_NotificacionStockBajo
+CREATE TABLE alertas_stock_bajo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT,
+    stock_actual INT,
+    mensaje VARCHAR(255),
+    fecha_alerta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+
 
 -- Insertar datos en productos
 INSERT INTO productos (nombre, descripcion, precio, categoria_id, stock) VALUES
