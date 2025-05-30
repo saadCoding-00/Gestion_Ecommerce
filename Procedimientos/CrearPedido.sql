@@ -10,7 +10,7 @@ BEGIN
     DECLARE v_precio_producto DECIMAL(10,2);
     DECLARE v_id_pedido INT;
 
-    -- 1. Verificar stock disponible
+    -- Verificar stock disponible
     SELECT stock INTO v_stock_actual
     FROM productos
     WHERE id = p_id_producto;
@@ -25,22 +25,22 @@ BEGIN
         SET MESSAGE_TEXT = 'Stock insuficiente.';
     END IF;
 
-    -- 2. Insertar nuevo pedido
+    -- Insertar nuevo pedido
     INSERT INTO pedidos (cliente_id, estado, total)
     VALUES (p_id_cliente, 'pendiente', 0.00);
 
     SET v_id_pedido = LAST_INSERT_ID();
 
-    -- 3. Obtener precio del producto
+    -- Obtener precio del producto
     SELECT precio INTO v_precio_producto
     FROM productos
     WHERE id = p_id_producto;
 
-    -- 4. Insertar detalle del pedido
+    -- Insertar detalle del pedido
     INSERT INTO detalles_pedido (pedido_id, producto_id, cantidad, precio_unitario)
     VALUES (v_id_pedido, p_id_producto, p_cantidad, v_precio_producto);
 
-    -- 5. Actualizar stock del producto
+    -- Actualizar stock del producto
     UPDATE productos
     SET stock = stock - p_cantidad
     WHERE id = p_id_producto;
