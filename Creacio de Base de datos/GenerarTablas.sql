@@ -106,8 +106,41 @@ INSERT INTO pedidos (cliente_id, estado, total) VALUES
 
 -- Insertar datos en detalles_pedido
 INSERT INTO detalles_pedido (pedido_id, producto_id, cantidad, precio_unitario) VALUES
-(1, 1, 1, 29.99),  -- Auriculares para pedido 1
-(1, 2, 1, 12.50),  -- Camiseta para pedido 1
-(2, 3, 1, 3.75);   -- Caja de cereales para pedido 2
+(1, 1, 1, 29.99),  
+(1, 2, 1, 12.50),  
+(2, 3, 1, 3.75);   
 
+-- Comentarios explicativos
+/*
+Este script crea:
+1. Una base de datos para gestionar un sistema de comercio electrónico.
+2. Las tablas necesarias para representar productos, clientes, pedidos y categorías.
+3. Relaciones entre las tablas mediante claves foráneas para asegurar integridad referencial.
+4. Triggers previstos para control histórico de precios y notificaciones de stock bajo.
+5. Datos de ejemplo suficientes para probar la lógica de inserciones y relaciones.
+
+Tablas principales:
+- productos: Contiene el catálogo de productos con nombre, descripción, precio, stock y categoría.
+- categorias: Define las categorías de los productos (como Electrónica, Ropa, Alimentos).
+- clientes: Guarda los datos personales y de contacto de los clientes.
+- pedidos: Registra cada pedido realizado por los clientes, incluyendo estado y total.
+- detalles_pedido: Desglosa cada producto incluido en un pedido, con cantidad y precio unitario.
+
+Tablas auxiliares para futura automatización:
+- historial_precios: Está diseñada para almacenar los cambios de precio de un producto, quién lo hizo y cuándo.
+- alertas_stock_bajo: Pensada para registrar alertas cuando el stock de un producto baja de cierto umbral.
+
+Los datos de ejemplo incluyen:
+- 3 productos de distintas categorías
+- 3 categorías con descripciones
+- 2 clientes con información de contacto
+- 2 pedidos (uno pendiente y otro completado)
+- Detalles de productos incluidos en cada pedido
+
+Este diseño permite:
+- Consultar productos por categoría
+- Ver los pedidos realizados por cada cliente
+- Calcular el total de cada pedido y su detalle
+- Implementar fácilmente triggers para auditoría de precios y alertas de stock
+*/
 
