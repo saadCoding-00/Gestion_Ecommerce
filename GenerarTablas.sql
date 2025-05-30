@@ -61,8 +61,10 @@ CREATE TABLE detalles_pedido (
 CREATE TABLE historial_precios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     producto_id INT,
+    usuario VARCHAR(50) NOT NULL,
+    operacion VARCHAR(20) NOT NULL,
     precio_anterior DECIMAL(4,2),
-    precio_nuevo DECIMAL(4,2),
+    precio_anterior DECIMAL(4,2),
     fecha_cambio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
@@ -76,6 +78,7 @@ CREATE TABLE alertas_stock_bajo (
     fecha_alerta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
+
 
 
 -- Insertar datos en productos
