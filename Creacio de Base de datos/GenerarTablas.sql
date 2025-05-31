@@ -64,7 +64,7 @@ CREATE TABLE historial_precios (
     usuario VARCHAR(50) NOT NULL,
     operacion VARCHAR(20) NOT NULL,
     precio_anterior DECIMAL(4,2),
-    precio_anterior DECIMAL(4,2),
+    precio_nuevo DECIMAL(4,2),
     fecha_cambio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );

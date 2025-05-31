@@ -7,9 +7,9 @@ FOR EACH ROW
 BEGIN
     IF OLD.precio != NEW.precio THEN
         INSERT INTO historial_precios 
-        (producto_id, usuario, operacion, precio_anterior, precio_anterior, fecha_cambio)
+        (producto_id, usuario, operacion, precio_anterior, precio_nuevo, fecha_cambio)
         VALUES
-        (NEW.id, CURRENT_USER(), NOW(), 'UPDATE', OLD.precio, NEW.precio);
+        (NEW.id, CURRENT_USER(), 'UPDATE', OLD.precio, NEW.precio, NOW());
     END IF;
 END $$
 
